@@ -1,0 +1,19 @@
+<%-include("../pagepub/header_start.html",{RelativeRootPathPrefix:'../'})%>
+<title>集成认证</title>
+<%-include("../pagepub/header_pub_part1.html",{RelativeRootPathPrefix:'../'})%>
+<%-include("../pagepub/pubCSS_part1.html",{RelativeRootPathPrefix:'../'})%>
+<link href="../assets/pages/demo/permissions/permissions.css" rel="stylesheet">
+<%-include("../pagepub/header_end.html",{RelativeRootPathPrefix:'../'})%>
+<%-include("../pagepub/body_start.html",{RelativeRootPathPrefix:'../'})%>
+
+<%//------------具体页面内容   %>
+
+<h3>权限列表测试,下面这些按钮会根据权限显示</h3>
+<a href="#" class="btnDebug permissions-hide" data-permissions="sys:-">系统管理</a>
+<a href="#" class="btnDebug permissions-hide" data-permissions="sys:123123">不会显示权限</a>
+<a href="#" class="btnDebug permissions-hide" data-permissions="sys:userList">用户管理</a>
+
+
+<%-include("../pagepub/pubJS_part1.html",{RelativeRootPathPrefix:'../'})%>
+<script type="text/javascript" src="../assets/pages/demo/permissions/permissions.js"></script>
+<%-include("../pagepub/body_end.html",{RelativeRootPathPrefix:'../'})%>

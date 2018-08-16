@@ -1,0 +1,19 @@
+{
+  "name": "staticmpa",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "chokidar": "^2.0.4",
+    "fs-extra": "^6.0.1",
+    "less": "^3.8.1",
+    "uglify-js": "^2.6.4",
+    "uglifycss": "0.0.29"
+  },
+  "author": "",
+  "license": "ISC"
+}
