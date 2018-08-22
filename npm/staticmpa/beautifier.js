@@ -21,6 +21,7 @@ function convertLess(srcPath,isMinify=true) {
         // 在代码中调用 less
         less.render(data,(err,css)=>{
             if( err ) {
+                console.log(err)
                 throw err
             }
             // 在这里我们得到了 less 编译后的 css 内容
@@ -28,6 +29,7 @@ function convertLess(srcPath,isMinify=true) {
             // 下面就是要将 css.css 写入到文件中
             fs.writeFile( distPath, css.css, ( err ) => {
                 if ( err ) {
+                    console.log(err)
                     throw err
                 }
                 if(isMinify) minifyJsCurrentPath(distPath);
