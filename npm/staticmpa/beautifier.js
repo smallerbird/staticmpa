@@ -11,7 +11,14 @@ function convertLess(srcPath,isMinify=true) {
     let isOk=/\.less/.test(srcPath);
     if (!isOk) return;
     let distPath=srcPath.split('.less').join('')+'.css';
-    fs.readFile(srcPath, 'utf8', (err,data) => {
+    const ejs=require('ejs');
+    let options={};
+    let data={
+        rootpath:Path.resolve(__dirname,'../../'),
+        require
+    };
+    ejs.renderFile(srcPath, data, options, function(err, data){
+    //fs.readFile(srcPath, 'utf8', (err,data) => {
         // data.toString()
         if( err ) {
             throw err
@@ -32,7 +39,7 @@ function convertLess(srcPath,isMinify=true) {
                     console.log(err)
                     throw err
                 }
-                if(isMinify) minifyJsCurrentPath(distPath);
+                if(isMinify) minifyCssCurrentPath(distPath);
                 // 输出 success 编译写入成功
                 //console.log( 'success' )
             })
@@ -41,7 +48,36 @@ function convertLess(srcPath,isMinify=true) {
 
     })
 }
-
+function transformJS(filePath){
+    console.log('transformJS filePath:'+filePath)
+    let isOk=/\.js$/.test(filePath);
+    let isOk1=/\.min\.js$/.test(filePath);
+    if (!isOk) return;
+    if (isOk1) return; //.min.js不显示
+    var babel = require("@babel/core");
+    let options={
+        presets:['@babel/preset-env']
+    }
+    babel.transformFile(filePath, options,async function (err, result) {
+        if( err ) {
+            console.log('transformJS err:')
+            console.log(err)
+            throw err
+        }
+        let dp=Path.dirname(filePath)
+        let basename=Path.basename(filePath,'.js');
+        let partname='.min.js'
+        let toFilePath=Path.resolve(dp,'./'+basename+partname)
+        //console.log(result)
+        let toFilePathES2015=toFilePath+'.es2015'
+        await writeFile(toFilePathES2015,result.code);
+        //await writeFile(toFilePath,result.code);
+        await writeFile(toFilePath+'.map',result.map);
+        let minCode=UglifyJS.minify(toFilePathES2015).code;
+        await writeFile(toFilePath,minCode);
+        //result; // => { code, map, ast }
+    });
+}
 function minifyJs(filePath,toFilePath=null) {
     let isOk=/\.js$/.test(filePath);
     let isOk1=/\.min\.js$/.test(filePath);
@@ -64,6 +100,7 @@ function minifyCss(filePath,toFilePath=null) {
     return true;
 }
 function minifyJsCurrentPath(filePath) {
+    console.log('minifyJsCurrentPath filePath:'+filePath)
     let isOk=/\.js$/.test(filePath);
     let isOk1=/\.min\.js$/.test(filePath);
     if (!isOk) return false;
@@ -74,6 +111,7 @@ function minifyJsCurrentPath(filePath) {
     let toFilePath=Path.resolve(dp,'./'+basename+partname)
 
     let minCode=UglifyJS.minify(filePath).code;
+    console.log('minify toFilePath save:'+toFilePath)
     writeFile(toFilePath,minCode);
     return true;
 }
@@ -93,6 +131,7 @@ function minifyCssCurrentPath(filePath) {
         [filePath],
         { maxLineLen: 500, expandVars: true }
     );
+    console.log('minifyCssCurrentPath toFilePath:'+toFilePath)
     writeFile(toFilePath,minCode);
     return true;
 }
@@ -138,4 +177,4 @@ function beautifier(dirPath,isReplace=false) {
         //console.log(fileName+' isJS:'+isJS);
     })
 }
-module.exports={convertLess,beautifier,minifyJs,minifyCss,minifyJsCurrentPath,minifyCssCurrentPath}
+module.exports={convertLess,beautifier,transformJS,minifyJs,minifyCss,minifyJsCurrentPath,minifyCssCurrentPath}

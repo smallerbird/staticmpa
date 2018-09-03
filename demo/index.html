@@ -1,16 +1,18 @@
-<%-include("./pagepub/header_start.html",{RelativeRootPathPrefix:'./'})%>
+<%-include("./pagepub/header_start.html")%>
 <title>首页</title>
-<%-include("./pagepub/header_pub_part1.html",{RelativeRootPathPrefix:'./'})%>
-<%-include("./pagepub/pubCSS_part1.html",{RelativeRootPathPrefix:'./'})%>
-<link href="./assets/pages/index/index.css" rel="stylesheet">
-<%-include("./pagepub/header_end.html",{RelativeRootPathPrefix:'./'})%>
-<%-include("./pagepub/body_start.html",{RelativeRootPathPrefix:'./'})%>
+<%-include("./pagepub/header_end.html")%>
+<%-include("./pagepub/body_start.html")%>
+<div class="index-contaier">
+    <div class="container">
+        <h3>例子列表</h3>
+        <div class="list-group">
+            <a class="list-group-item" href="pages/demo_t.html">demo_t.html</a>
+        </div>
+    </div>
+<div class="tip">
 
-<%//------------具体页面内容   %>
-
-<h3>demo首页</h3>
-
-
-<%-include("./pagepub/pubJS_part1.html",{RelativeRootPathPrefix:'./'})%>
-<script type="text/javascript" src="./assets/pages/index/index.js"></script>
-<%-include("./pagepub/body_end.html",{RelativeRootPathPrefix:'./'})%>
+</div>
+</div>
+<%-include("./pagepub/pubJS_part1.html")%>
+<script type="text/javascript" src="./assets/pages/index/index.min.js"></script>
+<%-include("./pagepub/body_end.html")%>

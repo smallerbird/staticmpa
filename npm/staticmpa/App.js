@@ -10,6 +10,9 @@ const readEjsFile = function (file,data={}){
     console.log('readEjsFile:'+file)
     return new Promise(function (resolve, reject){
         let options={};
+        data.I = function (include,file,data={}) {
+            return include(file,data);
+        }
         ejs.renderFile(file, data, options, function(err, data){
             if (err) reject(err);
             resolve(data);
@@ -68,9 +71,16 @@ function start({rootPath,port=3000,hostname='127.0.0.1'}){
         let key_apidata='/testapi_';
         if (pathname.indexOf(key_apidata)!=-1){
             var readfilepath=path.resolve(rootPath,'./apidata/'+pathname.split(key_apidata)[1]);
+            if (!/\.js$/.test(readfilepath)) readfilepath+='.js'
+            console.log('寻找文件：接口定义文件:'+readfilepath)
             var isE=await exists(readfilepath)
             if (isE){
                 var op=require(readfilepath);
+                if (typeof op=='function'){
+                    let urlInfo=URL.parse(req.url, true);
+                    let query=urlInfo.query
+                    op=op(req,query,urlInfo);
+                }
                 var code=op.code;
                 let data=op.data
                 if (code!=200){ //serverReqInfo
@@ -96,7 +106,7 @@ function start({rootPath,port=3000,hostname='127.0.0.1'}){
             pathname.indexOf('.woff')!=-1
     ){
             var readfilepath;
-            let key_apidata='/lib';
+            let key_apidata='/assets/lib/general';
             if (pathname.indexOf(key_apidata)!=-1){
                 readfilepath=path.resolve(__dirname,'./pubassets/dist/'+pathname.split(key_apidata)[1])
             }else{

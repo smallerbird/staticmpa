@@ -19,4 +19,4 @@ let {beautifierPath}=buildConfig;
 let {rootPath}=devConfig;
 beautifierPath=Path.resolve(rootPath,'./'+beautifierPath);
 console.log('开始监听：'+beautifierPath)
-watchJsCss(beautifierPath,isless,jsjs);
+watchJsCss(beautifierPath,isless,jsjs,buildConfig);

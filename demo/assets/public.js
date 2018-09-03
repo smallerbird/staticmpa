@@ -1,1 +1,26 @@
-function UserPermissions(){var e="";this.setValue=function(s,n){var t=s;e="";for(var i=0;i<t.length;i++){var o=t[i],w=o.element;""!=e&&(e+=","),e+='[data-permissions="'+w+'"]'}1==!!n&&this.run()},this.run=function(){console.log("run "+e),$(e).show()}}window.WebAPI.setHost("http://localhost:3000/"),window.WebAPI.setAuthKey("sessionKey");var login_auth=window.SMPA.getAuth();""!=login_auth&&window.WebAPI.setAuth(login_auth),window.WebAPI.setCallbackStepStatus(function(e,s){e==window.WebAPI.WebAPI_MSG_SUCESS&&"401"==s?window.SMPA.alert("收到401,你没有权限，[重写web/assets/public.js],加入自己的逻辑"):e==window.WebAPI.WebAPI_MSG_SUCESS&&"403"==s&&window.SMPA.alert("收到403,你没有权限，[重写web/assets/public.js],加入自己的逻辑")}),window.WebAPI.permissions=new UserPermissions;
+require.config({
+    baseUrl: '/assets/',
+    paths: {
+        jquery: "lib/general/jquery/jquery-1.9.1.min",
+        bootstrap:'lib/general/bootstrap/js/bootstrap.min',
+        layer:'lib/general/layer/layer',
+        component:'component',
+        'component/test':'component/test/js.min'
+    },
+    map: {
+        '*': {
+            'css':'lib/general/css.min'
+        }
+    },
+    shim: {
+        jquery: {
+            exports: '$'
+        },
+        bootstrap:{
+            deps: ['jquery','css!lib/general/bootstrap/css/bootstrap.min']
+        },
+        layer:{
+            deps: ['jquery','css!lib/general/layer/theme/default/layer']
+        }
+    }
+});

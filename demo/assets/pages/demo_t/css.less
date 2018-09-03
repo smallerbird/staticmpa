@@ -1,0 +1,16 @@
+<%
+var pageName='demo_t';
+var constpathPrefix='./demo/';
+//引用const常量
+var path=require('path');
+var constpath=path.resolve(rootpath,constpathPrefix+'assets/const.less');
+%>
+@import '<%=constpath%>';
+.<%=pageName%>-contaier{
+  .tip{
+    width: 100px;
+    height: 100px;
+    background-color: @theme_maincolor_1;
+  }
+
+}

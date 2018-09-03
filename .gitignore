@@ -3,3 +3,5 @@
 node_modules/
 npm/staticmpa/node_modules/
 build
+*.es2015
+*.map

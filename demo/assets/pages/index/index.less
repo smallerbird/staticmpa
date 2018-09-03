@@ -1,0 +1,14 @@
+<%
+//引用const常量
+var path=require('path');
+var constpath=path.resolve(rootpath,'./demo/assets/const.less');
+%>
+@import '<%=constpath%>';
+.index-contaier{
+  .tip{
+    width: 100px;
+    height: 100px;
+    background-color: @theme_maincolor_1;
+  }
+
+}

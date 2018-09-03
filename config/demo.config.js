@@ -8,15 +8,19 @@ module.exports={
         //复制的目录
         copyPaths:[
             {from:'./assets',to:'./assets/'},
-            {from:'../node_modules/staticmpa/pubassets/dist',to:'./lib/'},
+            {from:'../node_modules/staticmpa/pubassets/dist',to:'./assets/lib/general/'},
         ],
         //压缩最小化
         beautifierPath:[
             './assets'
         ],
+        beautifierIgnore:[
+            /\\demo\\assets\\lib\\test\\/
+        ],
         //需要生成的html的目录
         ejsPaths:[
-            {from:'./'+sitename,to:''},
+            {from:'./',to:''},
+            {from:'./pages',to:'pages'},
         ]
     },
     dev:{

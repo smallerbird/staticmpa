@@ -27,11 +27,11 @@ async function build({copyPaths,ejsPaths,rootPath,beautifierPath,buildPath}) {
     let mkdirx_r1=buildPath.split(mkdirx_r)[1];
     await mkdirx(mkdirx_r,mkdirx_r1).catch(e=>console.log(e));
     //压缩
-    console.log('beautifier...');
+    /*console.log('beautifier...');
     for (let i=0;i<beautifierPath.length;i++){
         let temPath=Path.resolve(rootPath,beautifierPath[i])
         beautifier(temPath,true);
-    }
+    }*/
     //拷贝
     console.log('copy...')
     for (let i=0;i<copyPaths.length;i++){
