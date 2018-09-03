@@ -1,7 +1,6 @@
-define('component/test',[
+define('component/test/js.min',[
     'bootstrap',
     'layer'
-
 ], function() {
     //页面运行代码放入到这里--------------------
     class Test{
