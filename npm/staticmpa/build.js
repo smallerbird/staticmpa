@@ -7,6 +7,9 @@ let {beautifier}=require('./beautifier')
 const readEjsFile = function (file,data={}){
     return new Promise(function (resolve, reject){
         let options={};
+        data.I = function (include,file,data={}) {
+            return include(file,data);
+        }
         ejs.renderFile(file, data, options, function(err, data){
             if (err) reject(err);
             resolve(data);

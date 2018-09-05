@@ -3,7 +3,7 @@ const fs=require('fs');
 const Path=require('path');
 var chokidar = require('chokidar');
 function startWatch(watchPath,isless,jsjs,watchJsCss){
-    console.log('startWatch:isless:'+isless+',jsjs:'+jsjs)
+    console.log('startWatch:isless:'+isless+',jsjs:'+jsjs+',watchPath:'+watchPath)
     var watcher = chokidar.watch(watchPath, {
         ignored: /(^|[\/\\])\../,
         persistent: true
