@@ -14,7 +14,7 @@ function startWatch(watchPath,isless,jsjs,watchJsCss,config,changeCallback=null)
         if (typeof watchJsCss.beautifierIgnore!='undefined'){
             let arrI=watchJsCss.beautifierIgnore;
             for (let i=0;i<arrI.length;i++){
-                console.log(arrI[i]+' test '+newPath+' :'+arrI[i].test(newPath));
+                console.log('忽略比对：'+arrI[i]+' test '+newPath+' :'+arrI[i].test(newPath));
                 if (arrI[i].test(newPath)){
                     console.log('忽略改变处理:'+path)
                     return false;

@@ -56,7 +56,7 @@ function transformJS(filePath){
     if (isOk1) return; //.min.js不显示
     var babel = require("@babel/core");
     let options={
-        presets:['@babel/preset-env']
+        presets:['@babel/preset-env',['@babel/preset-typescript',{allExtensions:true}]]
     }
     babel.transformFile(filePath, options,async function (err, result) {
         if( err ) {
@@ -64,6 +64,7 @@ function transformJS(filePath){
             console.log(err)
             throw err
         }
+        console.log('result.map:',result.map)
         let dp=Path.dirname(filePath)
         let basename=Path.basename(filePath,'.js');
         let partname='.min.js'
@@ -72,9 +73,10 @@ function transformJS(filePath){
         let toFilePathES2015=toFilePath+'.es2015'
         await writeFile(toFilePathES2015,result.code);
         //await writeFile(toFilePath,result.code);
-        await writeFile(toFilePath+'.map',result.map);
+        let mapFile=toFilePath+'.map'
+        await writeFile(mapFile,result.map);
         let minCode=UglifyJS.minify(toFilePathES2015).code;
-        await writeFile(toFilePath,minCode);
+        await writeFile(toFilePath,minCode+'\n//@ sourceMappingURL='+basename+'.min.js.map');
         //result; // => { code, map, ast }
     });
 }
