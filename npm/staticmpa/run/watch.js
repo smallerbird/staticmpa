@@ -15,8 +15,8 @@ configfile=prefix+'config/'+configfile+'.config.js'
 let config=require(configfile);
 let buildConfig=config.build;
 let devConfig=config.dev;
-let {beautifierPath}=buildConfig;
+let {beautifierPath,beautifierChangeCallback}=buildConfig;
 let {rootPath}=devConfig;
 beautifierPath=Path.resolve(rootPath,'./'+beautifierPath);
 console.log('开始监听：'+beautifierPath)
-watchJsCss(beautifierPath,isless,jsjs,buildConfig);
+watchJsCss(beautifierPath,isless,jsjs,buildConfig,config,beautifierChangeCallback);

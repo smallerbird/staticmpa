@@ -7,6 +7,7 @@ define('component/test/js.min',[
         hi({msg=''}){
             console.log('hi~ :'+msg)
         }
+
     }
     /*function Test(){
         function hi({msg=''}){
