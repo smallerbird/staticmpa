@@ -83,7 +83,7 @@ const mkdirx= async function(rootPath,dirpath){
         //console.log('建立目录:[是否存在'+isExists+']'+temPth)
         if (!isExists){ //如果存在就建立目录
             //console.log('建立成功..')
-            console.log('建立目录:'+temPth)
+            console.log('建立目录x:'+temPth)
             await mkdir(temPth);
         }
     }

@@ -48,6 +48,7 @@ module.exports={
         ejsPaths:[
             {from:'./',to:''},
             {from:'./pages',to:'pages'},
+            {from:'./demo',to:'demo'},
         ]
     },
     dev:{

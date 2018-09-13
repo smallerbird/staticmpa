@@ -55,7 +55,10 @@ async function build({copyPaths,ejsPaths,rootPath,beautifierPath,buildPath}) {
             toPath=Path.resolve(buildPath,ejsPaths[d].to);
         }
         let dirList=await readDir(dirPath).catch(e=>console.log(e));
-        if (ejsPaths[d].to!='') await mkdirx(buildPath,toPath).catch(e=>console.log(e));
+        if (ejsPaths[d].to!=''){
+            let tp=toPath.split(buildPath)[1]
+            await mkdirx(buildPath,tp).catch(e=>console.log(e));
+        }
         for (let j=0;j<dirList.length;j++){
             let fromPath=Path.resolve(dirPath,dirList[j])
             let toPathHtml=Path.resolve(toPath,dirList[j]);
