@@ -1,0 +1,12 @@
+{
+  "name": "bangbang",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "publish": "bangbang --file publish_to_git.js",
+    "merge": "bangbang --file merge.admin.bangbang.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

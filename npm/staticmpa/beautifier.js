@@ -63,7 +63,7 @@ function transformJS(filePath){
                 },
                 loose:true
             }],
-            // ['@babel/preset-typescript',{allExtensions:true}]
+           // ['@babel/preset-typescript',{allExtensions:true}]
         ],
         //"plugins": ["@babel/plugin-proposal-async-generator-functions"]
     }

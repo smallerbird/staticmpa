@@ -1,3 +1,9 @@
+//-----需要配置---start
+const API_HOST='http://localhost:3001/';
+const AuthKey='sessionKey';
+
+
+//-----end
 var WebAPI_MSG_START='WebAPI_MSG_START';
 var WebAPI_MSG_ERROR='WebAPI_MSG_ERROR';
 var WebAPI_MSG_SUCESS='WebAPI_MSG_SUCESS';
@@ -485,8 +491,8 @@ if (!Function.prototype.bind) {
         return fBound;
     };
 }
-window.WebAPI.setHost('http://localhost:3000/');
-window.WebAPI.setAuthKey('sessionKey');
+window.WebAPI.setHost(API_HOST);
+window.WebAPI.setAuthKey(AuthKey);
 /*如果cookies里有保存，就设置回token*/
 var login_auth=window.SMPA.getAuth()
 if (login_auth!=''){
@@ -496,9 +502,9 @@ if (login_auth!=''){
 window.WebAPI.setCallbackStepStatus(function (msg,data) {
     //console.log('callbackStepStatus:',msg, data)
     if (msg==window.WebAPI.WebAPI_MSG_SUCESS&&data == "401"){
-        window.SMPA.alert('收到401,你没有权限，[重写web/assets/public.js],加入自己的逻辑')
+        window.SMPA.alert('收到401,你没有权限，[重写assets/public.js  window.WebAPI.setCallbackStepStatus],加入自己的逻辑')
     }else if (msg==window.WebAPI.WebAPI_MSG_SUCESS&&data == "403"){
-        window.SMPA.alert('收到403,你没有权限，[重写web/assets/public.js],加入自己的逻辑')
+        window.SMPA.alert('收到403,你没有权限，[重写assets/public.js   window.WebAPI.setCallbackStepStatus],加入自己的逻辑')
     }
 });
 //对返回的权限常量进行class名字转换
@@ -536,79 +542,14 @@ function UserPermissions(){
     }
 }
 window.WebAPI.permissions=new UserPermissions();
-/**
- * 渲染模板
- * 文档地址：Github：https://github.com/jojoin/tppl
- * 注：在data加入了一些公共注入的变量：
- * WEB_STATIC_URL 静态资源的根目录url
- * SITE_HOST 网站的根目录url
- * @param tpl 模板文件
- * @param data 渲染数据
- * @returns {fn}
- */
-window.renderTemplete= function(tpl, data){
-    //注入一些公共变量
-    /*if(!data.WEB_STATIC_URL) if(window.WEB_STATIC_URL) data.WEB_STATIC_URL=window.WEB_STATIC_URL;
-    if(!data.SITE_HOST) if(window.SITE_HOST) data.SITE_HOST=window.SITE_HOST;
-    if(!data.LESS_CP) if(window.LESS_CP) data.LESS_CP=window.LESS_CP;
-    if(!data.DEFAULT_IMG) if(window.DEFAULT_IMG) data.DEFAULT_IMG=window.WEB_STATIC_URL+window.DEFAULT_IMG;*/
-    //
-    try {
-        var fn =  function(d) {
-            var i, k = [], v = [];
-            for (i in d) {
-                k.push(i);
-                v.push(d[i]);
-            };
-            return (new Function(k, fn.$)).apply(d, v);
-        };
-        if(!fn.$){
-            var tpls = tpl.split('[:');
-            fn.$ = "var $=''";
-            for(var t = 0;t < tpls.length;t++){
-                var p = tpls[t].split(':]');
-                if(t!=0){
-                    fn.$ += '='==p[0].charAt(0)
-                        ? "+("+p[0].substr(1)+")"
-                        : ";"+p[0].replace(/\r\n/g, '')+"$=$"
-                }
-                // 支持 <pre> 和 [::] 包裹的 js 代码
-                fn.$ += "+'"+p[p.length-1].replace(/\'/g,"\\'").replace(/\r\n/g, '\\n').replace(/\n/g, '\\n').replace(/\r/g, '\\n')+"'";
-            }
-            fn.$ += ";return $;";
-            // log(fn.$);
-        }
-        var outStr=data ? fn(data) : fn;
-        return outStr
-    }catch (e){
-        console.log('window.renderTempvare error:'+e);
-        console.log('error tpl:',tpl);
-    }
-}
 require.config({
     baseUrl: '/assets/',
     paths: {
-        jquery: "lib/general/jquery/jquery-1.9.1.min",
-        bootstrap:'lib/general/bootstrap/js/bootstrap.min',
-        layer:'lib/general/layer/layer',
-        component:'component',
-        'component/test':'component/test',
-        'component/DebugInfoPad':'component/DebugInfoPad'
+        /*component:'component',*/
     },
     map: {
         '*': {
             'css':'lib/general/css.min'
-        }
-    },
-    shim: {
-        jquery: {
-            exports: '$'
-        },
-        bootstrap:{
-            deps: ['jquery','css!lib/general/bootstrap/css/bootstrap.min']
-        },
-        layer:{
-            deps: ['jquery','css!lib/general/layer/theme/default/layer']
         }
     }
 });

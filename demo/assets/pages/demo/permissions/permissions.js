@@ -1,1 +1,0 @@
-$(function(){function n(n,i){window.SMPA.alert(n+JSON.stringify(i))}window.WebAPI.get({url:"testapi_permissions"}).then(function(n){window.WebAPI.permissions.setValue(n.data,!0)},function(i){n("[get error:]",i)})});

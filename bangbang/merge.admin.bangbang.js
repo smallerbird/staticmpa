@@ -1,0 +1,23 @@
+module.exports={
+    describe:"合并admin的公共代码",
+    merge:[
+        {
+            files:[
+                {from:'../node_modules/staticmpa/pubassets/dist/es5-shim/es5-shim.min.js',toResolve:true},
+                {from:'../node_modules/staticmpa/pubassets/dist/es5-shim/es5-sham.min.js',toResolve:true},
+                //{from:'../node_modules/staticmpa/pubassets/dist/polyfill.min.js',toResolve:true},
+                {from:'../node_modules/staticmpa/pubassets/dist/jquery/jquery-1.12.4.min.js',toResolve:true},
+                {from:'../node_modules/staticmpa/pubassets/dist/jquery/jquery.cookie.js',toResolve:true},
+                {from:'../node_modules/staticmpa/pubassets/dist/layer/layer.js',toResolve:true},
+                {from:'../node_modules/staticmpa/pubassets/dist/require.js',toResolve:true},
+             ],
+            name:{file:'../node_modules/staticmpa/pubassets/dist/layer/merge.js',toResolve:true}
+        }/*,
+        {
+            files:[
+                {from:'../admin/assets/component/FC_select/js.min.js',toResolve:true},
+             ],
+            name:{file:'../admin/assets/component/cc1.js',toResolve:true}
+        },*/
+    ]
+}

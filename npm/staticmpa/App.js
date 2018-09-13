@@ -41,13 +41,14 @@ function resJosn({res,resultCode=0,resultMsg="success",data={}}) {
 function start({rootPath,port=3000,hostname='127.0.0.1'}){
     console.log('rootPath:'+rootPath)
     var server = new http.Server();
-    server.on('request',async (req,res)=>{
-    //const server = http.createServer((req, res) => {
+    //server.on('request',async (req,res)=>{
+    server = http.createServer(async(req, res) => {
         var reqUrl=req.url;
         var urlInfo=URL.parse(reqUrl, true);
         var params = urlInfo.query;
         var pathname=urlInfo.pathname;
         var method=req.method;
+
         if(reqUrl=='/'){
             reqUrl='/index.html';
             pathname=reqUrl;
