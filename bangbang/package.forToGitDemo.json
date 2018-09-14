@@ -4,8 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "publish": "bangbang --file publish_to_git.js",
-    "publish_demo": "bangbang --file publish_to_gitdemo.js",
     "merge": "bangbang --file merge.demo.bangbang.js"
   },
   "author": "",
