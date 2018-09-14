@@ -13,6 +13,7 @@ module.exports={
         {from:fromprefix+'index.js',fromResolve:true,to:toprefix+'index.js',toResolve:true},
         {from:fromprefix+'package.json',fromResolve:true,to:toprefix+'package.json',toResolve:true},
         {from:fromprefix+'watchJsCss.js',fromResolve:true,to:toprefix+'watchJsCss.js',toResolve:true},
+        {from:'../.gitignore',fromResolve:true,to:toprefix+'.gitignore',toResolve:true},
         //{from:fromprefix+'',fromResolve:true,to:toprefix+'',toResolve:true},
         //说明文档
         {from:'../README.md',fromResolve:true,to:toprefix+'README.md',toResolve:true}

@@ -12,7 +12,7 @@ module.exports={
         {from:fromprefix+'LICENSE',fromResolve:true,to:toprefix+'LICENSE',toResolve:true},
         //{from:fromprefix+'',fromResolve:true,to:toprefix+'',toResolve:true},
         //说明文档
-        {from:fromprefix+'README.demo.md',fromResolve:true,to:toprefix+'README.md',toResolve:true},
+        {from:fromprefix+'README.md',fromResolve:true,to:toprefix+'README.md',toResolve:true},
 
     ]
 }
