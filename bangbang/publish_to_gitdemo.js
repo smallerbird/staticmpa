@@ -13,13 +13,8 @@ module.exports={
         //{from:fromprefix+'',fromResolve:true,to:toprefix+'',toResolve:true},
         //说明文档
         {from:fromprefix+'README.md',fromResolve:true,to:toprefix+'README.md',toResolve:true},
-
     ]
 }
-
-
-
-
 
 
 
